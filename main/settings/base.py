@@ -54,7 +54,7 @@ INSTALLED_APPS = [
     #!my_app
     "users",
 ]
-SITE_ID = 1
+# SITE_ID = 1
 
 MIDDLEWARE = [
     # "debug_toolbar.middleware.DebugToolbarMiddleware",
@@ -145,3 +145,10 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 #     "127.0.0.1",
 #     # ...
 # ]
+
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework.authentication.TokenAuthentication',
+        
+    ]
+}
