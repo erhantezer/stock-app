@@ -39,12 +39,22 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
+    # 'django.contrib.sites',
     
     #! third_party_library
     "rest_framework",
     "drf_yasg",
     # "debug_toolbar",
+    'rest_framework.authtoken',
+    'dj_rest_auth',
+    # 'allauth',
+    # 'allauth.account',
+    # 'allauth.socialaccount',
+    # 'dj_rest_auth.registration',
+    #!my_app
+    "users",
 ]
+SITE_ID = 1
 
 MIDDLEWARE = [
     # "debug_toolbar.middleware.DebugToolbarMiddleware",
