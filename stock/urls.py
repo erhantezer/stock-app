@@ -1,16 +1,24 @@
 from django.urls import path,include
 from rest_framework import routers
-from views import (
+from .views import (
     CategoryViewListCreate,
+    CategoryURD,
     BrandViewSet,
-    CategoryURD
+    ProductViewSet,
+    FirmViewSet,
+    StockViewSet,
 )
 
 router = routers.DefaultRouter()
-router("brand",BrandViewSet)
+router.register("brand",BrandViewSet)
+router.register("product",ProductViewSet)
+router.register("firm",FirmViewSet)
+router.register("stock",StockViewSet)
 
-urlpatterns = [
+
+urlpatterns =[
     path("category/",CategoryViewListCreate.as_view()),
     path("category/<int:pk>",CategoryURD.as_view()),
-    path("", include(router.urls))
+    path("",include(router.urls))
+     
 ]

@@ -1,7 +1,10 @@
 from django.shortcuts import render
 from .serializers import (
     CategorySerializers,
-    BrandSerializers
+    BrandSerializers,
+    ProductSerializers,
+    FirmSerializers,
+    StockSerializers,
     )
 
 from .models import (
@@ -25,3 +28,15 @@ class CategoryURD(generics.RetrieveDestroyAPIView):
 class BrandViewSet(ModelViewSet):
     queryset = Brand.objects.all()
     serializer_class = BrandSerializers
+    
+class ProductViewSet(ModelViewSet):
+    queryset = Product.objects.all()
+    serializer_class = ProductSerializers
+    
+class FirmViewSet(ModelViewSet):
+    queryset = Firm.objects.all()
+    serializer_class = FirmSerializers
+    
+class StockViewSet(ModelViewSet):
+    queryset = Stock.objects.all()
+    serializer_class = StockSerializers
