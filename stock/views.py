@@ -13,4 +13,6 @@ from .models import (
 from rest_framework import generics
 
 
-class CategoryView(generics.ListCreateAPIView):
+class CategoryViewListCreate(generics.ListCreateAPIView):
+    queryset = Category.objects.all()
+    serializer_class = CategorySerializers
