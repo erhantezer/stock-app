@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from rest_framework.permissions import IsAuthenticated
 from .serializers import (
     CategorySerializers,
     BrandSerializers,
@@ -40,3 +40,4 @@ class FirmViewSet(ModelViewSet):
 class StockViewSet(ModelViewSet):
     queryset = Stock.objects.all()
     serializer_class = StockSerializers
+    permission_classes=[IsAuthenticated]
