@@ -53,6 +53,7 @@ INSTALLED_APPS = [
     # 'dj_rest_auth.registration',
     #!my_app
     "users",
+    "stock",
 ]
 # SITE_ID = 1
 
