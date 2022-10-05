@@ -24,7 +24,7 @@ class Product(models.Model):
     stock_quantity = models.IntegerField()
     
     def __str_(self):
-        return f"{self.brand} {self.brand_name}'un stock miktarı {self.stock} tanedir"
+        return f"{self.brand} {self.brand_name} Stock Miktarı : {self.stock_quantity} tanedir"
     
     
     
@@ -44,7 +44,7 @@ class Stock(models.Model):
     ]
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     firm = models.ForeignKey(Firm, on_delete=models.CASCADE)
-    transaction = models.IntegerField(max_length=1, choices=TRANSACTION_TYPE)
+    transaction = models.CharField(max_length=2, choices=TRANSACTION_TYPE)
     product = models.ForeignKey(Product, on_delete=models.CASCADE)
     created_product_date = models.DateTimeField(auto_now=True)
     remove_product_date = models.DateTimeField(auto_now=True)
