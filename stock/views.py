@@ -18,6 +18,10 @@ class CategoryViewListCreate(generics.ListCreateAPIView):
     queryset = Category.objects.all()
     serializer_class = CategorySerializers
     
+class CategoryURD(generics.RetrieveDestroyAPIView):
+    queryset = Category.objects.all()
+    serializer_class = CategorySerializers
+    
 class BrandViewSet(ModelViewSet):
     queryset = Brand.objects.all()
     serializer_class = BrandSerializers
