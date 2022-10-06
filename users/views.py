@@ -18,6 +18,7 @@ class RegisterView(generics.CreateAPIView):
         serializer.is_valid(raise_expeption=True)
         user=serializer.save()
         data=serializer.data
+        
         if Token.objects.filter(user=user).exists():
             token=Token.objects.get(user=user)
             data["token"] = token.key
