@@ -41,7 +41,7 @@ class FirmSerializers(serializers.ModelSerializer):
             "id",
             "firm_name",
             "phone_number",
-            "adsress",
+            "address",
         )
         
 class StockSerializers(serializers.ModelSerializer):
@@ -62,7 +62,7 @@ class StockSerializers(serializers.ModelSerializer):
             "transaction",
             "product",
             "product_id",
-            "quentity",
+            "quantity",
             "price",
             "price_total",
         )
