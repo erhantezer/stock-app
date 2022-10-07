@@ -32,6 +32,7 @@ class ProductSerializers(serializers.ModelSerializer):
             "brand",
             "stock_quantity",
         )
+        read_only_fields = ('stock_quantity',) #!sadece okusun biz işlemi zaten signalsta yaptık
         
 class FirmSerializers(serializers.ModelSerializer):
     class Meta:
