@@ -5,7 +5,7 @@ from stock.models import (
     Category, 
     Firm, 
     Product, 
-    Stock
+    Transaction
     )
 
 # Register your models here.
@@ -13,4 +13,4 @@ admin.site.register(Category)
 admin.site.register(Product)
 admin.site.register(Firm)
 admin.site.register(Brand)
-admin.site.register(Stock)
+admin.site.register(Transaction)

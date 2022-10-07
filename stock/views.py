@@ -12,7 +12,7 @@ from .models import (
     Firm,
     Brand,
     Product,
-    Stock
+    Transaction
 )
 from rest_framework import generics
 from rest_framework.viewsets import ModelViewSet
@@ -38,6 +38,6 @@ class FirmViewSet(ModelViewSet):
     serializer_class = FirmSerializers
     
 class StockViewSet(ModelViewSet):
-    queryset = Stock.objects.all()
+    queryset = Transaction.objects.all()
     serializer_class = StockSerializers
     permission_classes=[IsAuthenticated,DjangoModelPermissionsOrAnonReadOnly]

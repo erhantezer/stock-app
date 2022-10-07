@@ -34,10 +34,10 @@ class Product(models.Model):
     product_name=models.CharField(max_length=50)
     category=models.ForeignKey(Category, on_delete=models.CASCADE)
     brand=models.ForeignKey(Brand, on_delete=models.CASCADE)
-    stock_quantity=models.IntegerField()
+    stock=models.IntegerField()
 
     def __str__(self):
-       return f"{self.brand} - {self.product_name} - Stok miktarı :  {self.stock_quantity}"
+       return f"{self.brand} - {self.product_name} - Stok miktarı :  {self.stock}"
 
 
 
@@ -50,22 +50,21 @@ class Firm(models.Model):
        return f"{self.firm_name}"
 
 
-class Stock(models.Model):
-   TRANSACTION_TYPE = [
-    ('I', 'IN'),
-    ('O', 'OUT'), 
-   ]
+class Transaction(models.Model):
+    TRANSACTION = (
+        (1, 'IN'),
+        (0, 'OUT')
+    )
+    user = models.ForeignKey(User, on_delete=models.SET_NULL, null=True)
+    firm = models.ForeignKey(
+        Firm, on_delete=models.SET_NULL, null=True, related_name='transactions')
+    transaction = models.SmallIntegerField(choices=TRANSACTION)
+    product = models.ForeignKey(
+        Product, on_delete=models.CASCADE, related_name='transaction')
+    quantity = models.SmallIntegerField()
+    price = models.DecimalField(max_digits=6, decimal_places=2)
+    price_total = models.DecimalField(
+        max_digits=8, decimal_places=2, blank=True)
 
-   user=models.ForeignKey(User, on_delete=models.CASCADE)
-   firm=models.ForeignKey(Firm, on_delete=models.CASCADE)
-   product = models.ForeignKey(Product, on_delete=models.CASCADE)
-   transaction=models.CharField(max_length=2, choices=TRANSACTION_TYPE)
-   created_product_date=models.DateTimeField(auto_now=True)
-   remove_product_date=models.DateTimeField(auto_now=True)
-   quantity=models.PositiveIntegerField()
-   price=models.DecimalField(max_digits=5, decimal_places=2)
-   price_total=models.CharField(max_length=15)
-
-
-   def __str__(self):
-    return f"{self.product} {self.user} tarafından {self.transaction} işlemi yapıldı"
+    def __str__(self):
+        return f'{self.transaction} - {self.product} - {self.quantity}'

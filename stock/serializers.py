@@ -3,7 +3,7 @@ from dataclasses import fields
 from .models import (
     Category,
     Brand,
-    Stock,
+    Transaction,
     Firm,
     Product,
 )
@@ -30,9 +30,9 @@ class ProductSerializers(serializers.ModelSerializer):
             "product_name",
             "category",
             "brand",
-            "stock_quantity",
+            "stock",
         )
-        read_only_fields = ('stock_quantity',) #!sadece okusun biz işlemi zaten signalsta yaptık
+        read_only_fields = ('stock',) #!sadece okusun biz işlemi zaten signalsta yaptık
         
 class FirmSerializers(serializers.ModelSerializer):
     class Meta:
@@ -52,7 +52,7 @@ class StockSerializers(serializers.ModelSerializer):
     firm_id=serializers.IntegerField(write_only=True)
     product_id=serializers.IntegerField(write_only=True)
     class Meta:
-        model=Stock
+        model=Transaction
         fields=(
             "id",
             "user",
