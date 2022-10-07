@@ -65,3 +65,13 @@ class StockSerializers(serializers.ModelSerializer):
             "price",
             "price_total",
         )
+        read_only_fields = ('price_total',) #!sadece okusun biz işlemi zaten signalsta yaptık
+        
+    def validate(self, data):
+        if data.get('transaction') == 0:
+            product = Product.objects.get(id=data.get('product_id'))
+            if data.get('quantity') > product.stock:
+                raise serializers.ValidationError(
+                    f'Dont have enough stock. Current stock is {product.stock}'
+                )
+        return data
