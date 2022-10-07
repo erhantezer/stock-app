@@ -1,4 +1,5 @@
 from rest_framework.permissions import IsAuthenticated,DjangoModelPermissionsOrAnonReadOnly
+from django_filters.rest_framework import DjangoFilterBackend
 from .serializers import (
     CategorySerializers,
     BrandSerializers,
@@ -16,28 +17,46 @@ from .models import (
 )
 from rest_framework import generics
 from rest_framework.viewsets import ModelViewSet
+from rest_framework import  filters
 
 class CategoryViewListCreate(generics.ListCreateAPIView):
     queryset = Category.objects.all()
     serializer_class = CategorySerializers
+    filter_backends = [filters.SearchFilter]
+    search_fields = ['name']
     
 class CategoryURD(generics.RetrieveDestroyAPIView):
     queryset = Category.objects.all()
     serializer_class = CategorySerializers
+    filter_backends = [filters.SearchFilter]
+    search_fields = ['name']
     
 class BrandViewSet(ModelViewSet):
     queryset = Brand.objects.all()
     serializer_class = BrandSerializers
+    filter_backends = [filters.SearchFilter]
+    search_fields = ['name']
     
 class ProductViewSet(ModelViewSet):
     queryset = Product.objects.all()
     serializer_class = ProductSerializers
+    filter_backends = [DjangoFilterBackend, filters.SearchFilter]
+    filterset_fields = ['category', 'brand']
+    search_fields = ['name']
     
 class FirmViewSet(ModelViewSet):
     queryset = Firm.objects.all()
     serializer_class = FirmSerializers
+    filter_backends = [filters.SearchFilter]
+    search_fields = ['name']
     
 class StockViewSet(ModelViewSet):
     queryset = Transaction.objects.all()
     serializer_class = StockSerializers
     permission_classes=[IsAuthenticated,DjangoModelPermissionsOrAnonReadOnly]
+    filter_backends = [DjangoFilterBackend, filters.SearchFilter]
+    filterset_fields = ['firm', 'transaction', 'product']
+    search_fields = ['firm']
+
+    def perform_create(self, serializer):
+        serializer.save(user=self.request.user)

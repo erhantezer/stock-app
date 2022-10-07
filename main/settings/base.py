@@ -47,6 +47,7 @@ INSTALLED_APPS = [
     # "debug_toolbar",
     'rest_framework.authtoken',
     'dj_rest_auth',
+    'django_filters',
     # 'allauth',
     # 'allauth.account',
     # 'allauth.socialaccount',
@@ -153,3 +154,7 @@ REST_FRAMEWORK = {
         
     ]
 }
+
+# REST_AUTH_SERIALIZERS = {
+#     'TOKEN_SERIALIZER': 'users.serializers.CustomTokenSerializer',
+# }
