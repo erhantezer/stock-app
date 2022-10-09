@@ -29,21 +29,21 @@ class CategoryViewListCreate(generics.ListCreateAPIView):
     serializer_class = CategorySerializers
     filter_backends = [filters.SearchFilter]
     search_fields = ['name']
-    permission_classes=[DjangoModelPermissionsOrAnonReadOnly]
+    # permission_classes=[DjangoModelPermissionsOrAnonReadOnly]
     
 class CategoryURD(generics.RetrieveDestroyAPIView):
     queryset = Category.objects.all()
     serializer_class = CategorySerializers
     filter_backends = [filters.SearchFilter]
     search_fields = ['name']
-    permission_classes=[DjangoModelPermissionsOrAnonReadOnly]
+    # permission_classes=[DjangoModelPermissionsOrAnonReadOnly]
     
 class BrandViewSet(ModelViewSet):
     queryset = Brand.objects.all()
     serializer_class = BrandSerializers
     filter_backends = [filters.SearchFilter]
     search_fields = ['name']
-    permission_classes=[DjangoModelPermissionsOrAnonReadOnly]
+    # permission_classes=[DjangoModelPermissionsOrAnonReadOnly]
     
 class ProductViewSet(ModelViewSet):
     queryset = Product.objects.all()
@@ -51,19 +51,19 @@ class ProductViewSet(ModelViewSet):
     filter_backends = [DjangoFilterBackend, filters.SearchFilter]
     filterset_fields = ['category', 'brand']
     search_fields = ['name']
-    permission_classes=[DjangoModelPermissionsOrAnonReadOnly]
+    # permission_classes=[DjangoModelPermissionsOrAnonReadOnly]
     
 class FirmViewSet(ModelViewSet):
     queryset = Firm.objects.all()
     serializer_class = FirmSerializers
     filter_backends = [filters.SearchFilter]
     search_fields = ['name']
-    permission_classes=[DjangoModelPermissionsOrAnonReadOnly]
+    # permission_classes=[DjangoModelPermissionsOrAnonReadOnly]
     
 class StockViewSet(ModelViewSet):
     queryset = Transaction.objects.all()
     serializer_class = StockSerializers
-    permission_classes=[DjangoModelPermissionsOrAnonReadOnly]
+    # permission_classes=[DjangoModelPermissionsOrAnonReadOnly]
     filter_backends = [DjangoFilterBackend, filters.SearchFilter]
     filterset_fields = ['firm', 'transaction', 'product']
     search_fields = ['firm']
