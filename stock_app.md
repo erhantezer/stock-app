@@ -15,7 +15,7 @@ class CustomModelPermission(DjangoModelPermissions):
         'DELETE': ['%(app_label)s.delete_%(model_name)s'],
     }
 ```
-CRUD işlemleri için istersek nelere izin verebileceğimizi ekstra yaptık özellikle get view işlemini ekledik, rest auth işemini urls e ekledik ayrıca özelleştirdiğimiz register işlemi için endpoint oluşturduk . Ardından Stock app e geçerek model işlemlerini 
+CRUD işlemleri için istersek nelere izin verebileceğimizi ekstra yaptık özellikle get view işlemini ekledik, rest auth işemini urls e ekledik ayrıca özelleştirdiğimiz register işlemi için endpoint oluşturduk . Ardından Stock app e geçerek model işlemlerini yaptık buraya özellikle dikkat edilmeli
 
 </font>
 
