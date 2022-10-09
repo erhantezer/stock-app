@@ -56,15 +56,12 @@ class Transaction(models.Model):
         (0, 'OUT')
     )
     user = models.ForeignKey(User, on_delete=models.SET_NULL, null=True)
-    firm = models.ForeignKey(
-        Firm, on_delete=models.SET_NULL, null=True, related_name='transactions')
+    firm = models.ForeignKey(Firm, on_delete=models.SET_NULL, null=True, related_name='transactions')
     transaction = models.SmallIntegerField(choices=TRANSACTION)
-    product = models.ForeignKey(
-        Product, on_delete=models.CASCADE, related_name='transaction')
+    product = models.ForeignKey(Product, on_delete=models.CASCADE, related_name='transaction')
     quantity = models.SmallIntegerField()
     price = models.DecimalField(max_digits=6, decimal_places=2)
-    price_total = models.DecimalField(
-        max_digits=8, decimal_places=2, blank=True)
+    price_total = models.DecimalField(max_digits=8, decimal_places=2, blank=True)
 
     def __str__(self):
         return f'{self.transaction} - {self.product} - {self.quantity}'
